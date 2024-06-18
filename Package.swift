@@ -29,5 +29,5 @@ let package = Package(
         .testTarget(
             name: "BMPlayerTests",
             dependencies: ["BMPlayer"]),
-    ],
+    ]
 )
