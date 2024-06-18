@@ -39,8 +39,8 @@ open class BMPlayerManager {
     open var allowLog = false
     
     /// use gestures to set brightness, volume and play position
-    open var enableBrightnessGestures = true
-    open var enableVolumeGestures = true
+    open var enableBrightnessGestures = false
+    open var enableVolumeGestures = false
     open var enablePlaytimeGestures = true
     open var enablePlayControlGestures = true
     

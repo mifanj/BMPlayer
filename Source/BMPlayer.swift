@@ -17,6 +17,7 @@ public protocol BMPlayerDelegate : class {
     func bmPlayer(player: BMPlayer, playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval)
     func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool)
     func bmPlayer(player: BMPlayer, playerOrientChanged isFullscreen: Bool)
+    func bmPlayer(player: BMPlayer, handelVerticalPanGestures value: CGFloat)
 }
 
 /**
@@ -301,12 +302,13 @@ open class BMPlayer: UIView {
     }
     
     fileprivate func verticalMoved(_ value: CGFloat) {
-        if BMPlayerConf.enableVolumeGestures && self.isVolume{
-            self.volumeViewSlider.value -= Float(value / 10000)
-        }
-        else if BMPlayerConf.enableBrightnessGestures && !self.isVolume{
-            UIScreen.main.brightness -= value / 10000
-        }
+        // if BMPlayerConf.enableVolumeGestures && self.isVolume{
+        //     self.volumeViewSlider.value -= Float(value / 10000)
+        // }
+        // else if BMPlayerConf.enableBrightnessGestures && !self.isVolume{
+        //     UIScreen.main.brightness -= value / 10000
+        // }
+        delegate?.bmPlayer(player: self, handelVerticalPanGestures: value)
     }
     
     fileprivate func horizontalMoved(_ value: CGFloat) {
