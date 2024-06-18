@@ -15,7 +15,6 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1")),
         .package(url: "https://github.com/ninjaprox/NVActivityIndicatorView.git", .upToNextMajor(from: "5.2.0")),
-        .package(url: "https://github.com/mifanj/VIMediaCache.git", .upToNextMajor(from: "0.0.1")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -25,7 +24,6 @@ let package = Package(
             dependencies: [
                 .product(name: "SnapKit", package: "SnapKit"),
                 .product(name: "NVActivityIndicatorView", package: "NVActivityIndicatorView"),
-                .product(name: "VIMediaCache", package: "VIMediaCache"),
             ],
             path: "Source"),
         .testTarget(
