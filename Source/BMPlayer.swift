@@ -271,6 +271,7 @@ open class BMPlayer: UIView {
                 self.horizontalMoved(velocityPoint.x)
             case BMPanDirection.vertical:
                 // self.verticalMoved(velocityPoint.y)
+                break
             }
             
         case UIGestureRecognizer.State.ended:
