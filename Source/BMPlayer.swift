@@ -115,6 +115,9 @@ open class BMPlayer: UIView {
     //Cache is playing result to improve callback performance
     fileprivate var isPlayingCache: Bool? = nil
     
+    //水平手势是否可用
+    fileprivate var isHorizontalPanGestureEnabled: Bool = false
+
     // MARK: - Public functions
     
     /**
@@ -162,7 +165,8 @@ open class BMPlayer: UIView {
             isURLSet = true
         }
         
-        panGesture.isEnabled = true
+        // panGesture.isEnabled = true
+        isHorizontalPanGestureEnabled = true
         playerLayer?.play()
         isPauseByUser = false
     }
@@ -247,7 +251,7 @@ open class BMPlayer: UIView {
             let y = abs(velocityPoint.y)
             
             if x > y {
-                if BMPlayerConf.enablePlaytimeGestures {
+                if BMPlayerConf.enablePlaytimeGestures && isHorizontalPanGestureEnabled {
                     self.panDirection = BMPanDirection.horizontal
                     
                     // 给sumTime初值
@@ -314,7 +318,7 @@ open class BMPlayer: UIView {
     }
     
     fileprivate func horizontalMoved(_ value: CGFloat) {
-        guard BMPlayerConf.enablePlaytimeGestures else { return }
+        guard BMPlayerConf.enablePlaytimeGestures && isHorizontalPanGestureEnabled else { return }
         
         isSliderSliding = true
         if let playerItem = playerLayer?.playerItem {
@@ -495,7 +499,8 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         default:
             break
         }
-        panGesture.isEnabled = state != .playedToTheEnd
+        // panGesture.isEnabled = state != .playedToTheEnd
+        isHorizontalPanGestureEnabled = state != .playedToTheEnd
         delegate?.bmPlayer(player: self, playerStateDidChange: state)
         playStateChanged?(state)
     }
