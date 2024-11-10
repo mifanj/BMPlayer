@@ -208,8 +208,11 @@ open class BMPlayerControlView: UIView {
     }
     
     open func playStateDidChange(isPlaying: Bool) {
-        autoFadeOutControlViewWithAnimation()
         playButton.isSelected = isPlaying
+
+        if isPlaying {
+            autoFadeOutControlViewWithAnimation()
+        }
     }
     
     /**
