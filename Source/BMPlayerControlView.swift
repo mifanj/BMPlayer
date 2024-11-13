@@ -55,7 +55,7 @@ public protocol BMPlayerControlStatusDelegate {
 open class BMPlayerControlView: UIView {
     
     open weak var delegate: BMPlayerControlViewDelegate?
-    open weak var statusDelegate: BMPlayerControlStatusDelegate?
+    open var statusDelegate: BMPlayerControlStatusDelegate?
     open weak var player: BMPlayer?
     
     // MARK: Variables
