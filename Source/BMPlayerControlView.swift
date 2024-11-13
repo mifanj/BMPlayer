@@ -43,6 +43,12 @@ import NVActivityIndicatorView
      - parameter rate:        playback rate
      */
     @objc optional func controlView(controlView: BMPlayerControlView, didChangeVideoPlaybackRate rate: Float)
+    
+    /**
+     call when control view hidden
+     
+     */
+    @objc optional func controlViewHidden()
 }
 
 open class BMPlayerControlView: UIView {
@@ -116,6 +122,8 @@ open class BMPlayerControlView: UIView {
     /// Gesture used to show / hide control view
     open var tapGesture: UITapGestureRecognizer!
     open var doubleTapGesture: UITapGestureRecognizer!
+    
+    open var ignoredtapGestureTypes: [AnyClass] = []
     
     // MARK: - handle player state change
     /**
@@ -267,6 +275,9 @@ open class BMPlayerControlView: UIView {
             // if isShow {
             //     self?.autoFadeOutControlViewWithAnimation()
             // }
+            if !isShow {
+                self?.delegate?.controlViewHidden?()
+            }
         }
     }
     
@@ -411,6 +422,12 @@ open class BMPlayerControlView: UIView {
      - parameter gesture: tap gesture
      */
     @objc open func onTapGestureTapped(_ gesture: UITapGestureRecognizer) {
+        guard let tappedView = gesture.view else { return }
+        for ignoredType in ignoredtapGestureTypes {
+            if tappedView.isKind(of: ignoredType) {
+                return
+            }
+        }
         if playerLastState == .playedToTheEnd {
             return
         }
