@@ -278,7 +278,7 @@ open class BMPlayerControlView: UIView {
             //     self?.autoFadeOutControlViewWithAnimation()
             // }
             if !isShow {
-                self?.statusDelegate?.controlViewHidden?()
+                self?.statusDelegate?.controlViewHidden()
             }
         }
     }
