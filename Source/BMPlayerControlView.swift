@@ -422,10 +422,12 @@ open class BMPlayerControlView: UIView {
      - parameter gesture: tap gesture
      */
     @objc open func onTapGestureTapped(_ gesture: UITapGestureRecognizer) {
-        guard let tappedView = gesture.view else { return }
-        for ignoredType in ignoredtapGestureTypes {
-            if tappedView.isKind(of: ignoredType) {
-                return
+        let tapLocation = gesture.location(in: self)
+        if let tappedView = hitTest(tapLocation, with: nil) {
+            for ignoredType in ignoredtapGestureTypes {
+                if tappedView.isKind(of: ignoredType) {
+                    return
+                }
             }
         }
         if playerLastState == .playedToTheEnd {
