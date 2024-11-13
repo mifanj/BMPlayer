@@ -14,7 +14,7 @@ public protocol BMPlayerControlStatusDelegate {
      call when control view hidden
      
      */
-    optional func controlViewHidden()
+    func controlViewHidden()
 }
 
 @objc public protocol BMPlayerControlViewDelegate: class {
