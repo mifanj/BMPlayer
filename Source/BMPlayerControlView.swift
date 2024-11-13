@@ -9,6 +9,13 @@
 import UIKit
 import NVActivityIndicatorView
 
+public protocol BMPlayerControlStatusDelegate {
+    /**
+     call when control view hidden
+     
+     */
+    @objc optional func controlViewHidden()
+}
 
 @objc public protocol BMPlayerControlViewDelegate: class {
     /**
@@ -43,17 +50,12 @@ import NVActivityIndicatorView
      - parameter rate:        playback rate
      */
     @objc optional func controlView(controlView: BMPlayerControlView, didChangeVideoPlaybackRate rate: Float)
-    
-    /**
-     call when control view hidden
-     
-     */
-    @objc optional func controlViewHidden()
 }
 
 open class BMPlayerControlView: UIView {
     
     open weak var delegate: BMPlayerControlViewDelegate?
+    open weak var statusDelegate: BMPlayerControlStatusDelegate?
     open weak var player: BMPlayer?
     
     // MARK: Variables
@@ -276,7 +278,7 @@ open class BMPlayerControlView: UIView {
             //     self?.autoFadeOutControlViewWithAnimation()
             // }
             if !isShow {
-                self?.delegate?.controlViewHidden?()
+                self?.statusDelegate?.controlViewHidden?()
             }
         }
     }
