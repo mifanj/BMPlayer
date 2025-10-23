@@ -16,11 +16,11 @@ public class BMTimeSlider: UISlider {
         return customBounds
     }
     
-    override open func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
-        let rect = super.thumbRect(forBounds: bounds, trackRect: rect, value: value)
-        let newx = rect.origin.x - 11.5
-        let newy = rect.origin.y - 11.5
-        let newRect = CGRect(x: newx, y: newy, width: 30, height: 30)
-        return newRect
-    }
+//    override open func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
+//        let rect = super.thumbRect(forBounds: bounds, trackRect: rect, value: value)
+//        let newx = rect.origin.x - 11.5
+//        let newy = rect.origin.y - 11.5
+//        let newRect = CGRect(x: newx, y: newy, width: 30, height: 30)
+//        return newRect
+//    }
 }
